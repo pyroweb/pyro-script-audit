@@ -1,0 +1,8 @@
+#pyro-sa-modal{position:fixed;inset:0;background:#0005;display:none;align-items:center;justify-content:center;z-index:10000;}
+#pyro-sa-modal .box{background:#fff;padding:20px;max-width:480px;width:100%;border-radius:4px}
+#pyro-sa-modal label{display:block;margin:6px 0}
+#pyro-sa-modal .rule-list{border:1px solid #ccd0d4;padding:8px;max-height:180px;overflow:auto;margin:8px 0}
+#pyro-sa-modal .rule-item{display:flex;justify-content:space-between;margin:2px 0;padding:2px 4px;background:#f6f7f7}
+#pyro-sa-modal .rule-item button{margin-left:6px}
+
+.pyro-sa-admin-wrap .column-src span { word-break: break-all; }
