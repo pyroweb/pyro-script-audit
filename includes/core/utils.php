@@ -110,9 +110,57 @@ function pyro_sa_get_default_conditional_rules() : array {
 }
 
 
-// You might add other general utility functions here as your plugin grows.
-// For example:
-// - Functions to sanitize specific types of input if they are complex.
-// - Functions to format data for display if used in multiple places.
+/**
+ * Helper function to determine the current tab slug, especially for screen options.
+ * Needs to work both when displaying the page and when saving options via admin_init.
+ *
+ * @since 3.1.0
+ * @return string The current tab slug ('found', 'dequeued', 'manual') or 'found' as default.
+ */
+function pyro_sa_get_current_tab_for_screen_options(): string {
+    // Priority 1: Check $_GET['tab'] if we are on the correct admin page during page load.
+    $current_screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if ($current_screen && $current_screen->id === 'tools_page_pyro-script-audit-log' && isset($_GET['tab'])) {
+        $tab_slug = sanitize_key($_GET['tab']);
+        if (in_array($tab_slug, ['found', 'dequeued', 'manual'], true)) {
+            return $tab_slug;
+        }
+    }
+
+    // Priority 2: Check $_POST['current_tab'] if it was submitted (e.g., from bulk actions form)
+    if (isset($_POST['current_tab'])) {
+        $tab_slug = sanitize_key($_POST['current_tab']);
+         if (in_array($tab_slug, ['found', 'dequeued', 'manual'], true)) {
+            return $tab_slug;
+        }
+    }
+    
+    // Priority 3: Check $_POST['wp_screen_options']['value'] when saving screen options
+    // This 'value' field is what we set to the current tab slug in the screen options HTML.
+    if (isset($_POST['screenoptionnonce'], $_POST['wp_screen_options']['option'], $_POST['wp_screen_options']['value'])) {
+        $tab_slug = sanitize_key(wp_unslash($_POST['wp_screen_options']['value']));
+        if (in_array($tab_slug, ['found', 'dequeued', 'manual'], true)) {
+            return $tab_slug;
+        }
+    }
+
+
+    // Priority 4: Check the HTTP referer as a last resort when saving screen options,
+    // if the 'value' field didn't provide the tab.
+    if (isset($_POST['screenoptionnonce'], $_POST['wp_screen_options']['option']) && ($referer = wp_get_referer())) {
+        $query_args = [];
+        $referer_query = wp_parse_url($referer, PHP_URL_QUERY);
+        if ($referer_query) {
+             wp_parse_str($referer_query, $query_args);
+             if (isset($query_args['tab']) && in_array($query_args['tab'], ['found', 'dequeued', 'manual'], true)) {
+                return sanitize_key($query_args['tab']);
+             }
+        }
+    }
+
+    // Fallback if tab cannot be determined
+    return 'found';
+}
+
 
 ?>

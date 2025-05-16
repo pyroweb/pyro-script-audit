@@ -16,16 +16,16 @@ window.PsSaRuleBuilder = (function() {
         return { open: function() { alert('Rule Builder Error: Missing API settings. Check console.'); } };
     }
 
-    // DOM References for the #ps-sa-modal
-    const modal            = document.getElementById('ps-sa-modal');
-    const typeSel          = document.getElementById('ps-sa-type');
-    const extraDiv         = document.getElementById('ps-sa-extra');
-    const listBox          = document.getElementById('ps-sa-list');
-    const modeSel          = document.getElementById('ps-sa-mode');
-    const currentHandleSpan= document.getElementById('ps-sa-current');
-    const addRuleButton    = document.getElementById('ps-sa-add');
-    const saveRulesButton  = document.getElementById('ps-sa-save');
-    const closeRulesButton = document.getElementById('ps-sa-close');
+    // DOM References for the #pyro-sa-modal
+    const modal            = document.getElementById('pyro-sa-modal');
+    const typeSel          = document.getElementById('pyro-sa-type');
+    const extraDiv         = document.getElementById('pyro-sa-extra');
+    const listBox          = document.getElementById('pyro-sa-list');
+    const modeSel          = document.getElementById('pyro-sa-mode');
+    const currentHandleSpan= document.getElementById('pyro-sa-current');
+    const addRuleButton    = document.getElementById('pyro-sa-add');
+    const saveRulesButton  = document.getElementById('pyro-sa-save');
+    const closeRulesButton = document.getElementById('pyro-sa-close');
     const messageArea      = document.getElementById('pyro-sa-rule-modal-messages'); // For displaying messages
 
     // API settings from localized data
@@ -251,7 +251,7 @@ window.PsSaRuleBuilder = (function() {
 
     function openModalForHandle(handleToEdit, apiSubPath) {
         if (!modal) {
-            console.error("Rule builder modal element (#ps-sa-modal) not found.");
+            console.error("Rule builder modal element (#pyro-sa-modal) not found.");
             return;
         }
         clearModalMessages();

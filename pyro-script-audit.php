@@ -60,6 +60,7 @@ function pyro_sa_include_files() {
 
     // Admin specific functionality
     if ( is_admin() ) {
+        require_once PYRO_SA_INC_DIR . 'admin/admin-utils.php';         // Admin utility functions
         require_once PYRO_SA_INC_DIR . 'admin/admin-page.php';          // Main admin page UI
         require_once PYRO_SA_INC_DIR . 'admin/admin-actions.php';       // admin-post.php handlers
         require_once PYRO_SA_INC_DIR . 'admin/rest-api.php';            // REST API endpoints

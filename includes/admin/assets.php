@@ -119,49 +119,4 @@ function pyro_sa_enqueue_admin_assets( $hook_suffix ) {
 }
 add_action( 'admin_enqueue_scripts', 'pyro_sa_enqueue_admin_assets' );
 
-
-// Helper functions to generate <option> strings for JS localization
-// These can also live in utils.php or admin-utils.php if preferred
-
-/**
- * Gets HTML <option> elements for all public post types.
- * @return string HTML string of <option> tags.
- */
-function pyro_sa_get_post_type_options_for_js(): string {
-    $options = '';
-    $post_types = get_post_types( ['public' => true], 'objects' );
-    foreach ( $post_types as $pt ) {
-        $options .= sprintf( '<option value="%s">%s</option>', esc_attr( $pt->name ), esc_html( $pt->labels->singular_name ) );
-    }
-    return $options;
-}
-
-/**
- * Gets HTML <option> elements for all public taxonomies.
- * @return string HTML string of <option> tags.
- */
-function pyro_sa_get_taxonomy_options_for_js(): string {
-    $options = '';
-    $taxonomies = get_taxonomies( ['public' => true], 'objects' );
-    foreach ( $taxonomies as $tax ) {
-        $options .= sprintf( '<option value="%s">%s</option>', esc_attr( $tax->name ), esc_html( $tax->labels->singular_name ) );
-    }
-    return $options;
-}
-
-/**
- * Gets HTML <option> elements for all page templates.
- * @return string HTML string of <option> tags.
- */
-function pyro_sa_get_template_options_for_js(): string {
-    $options = '';
-    $templates = wp_get_theme()->get_page_templates();
-    if ( ! empty( $templates ) ) {
-        foreach ( $templates as $file => $name ) {
-            $options .= sprintf( '<option value="%s">%s</option>', esc_attr( $file ), esc_html( $name ) );
-        }
-    }
-    return $options;
-}
-
 ?>

@@ -28,20 +28,20 @@
         }
 
         // Modal and form elements
-        const manualScriptModal   = document.getElementById('ps-sa-manual-script-entry-modal');
-        const form                = document.getElementById('ps-sa-manual-script-form');
-        const modalTitleEl        = document.getElementById('ps-sa-manual-script-modal-title-h2');
-        const modeField           = document.getElementById('ps-sa-manual-script-modal-mode');
-        const originalHandleField = document.getElementById('ps-sa-manual-script-original-handle');
-        const handleField         = document.getElementById('ps-sa-manual-handle');
-        const srcField            = document.getElementById('ps-sa-manual-src');
-        const verField            = document.getElementById('ps-sa-manual-ver');
-        const depsField           = document.getElementById('ps-sa-manual-deps');
-        const inFooterCheckbox    = document.getElementById('ps-sa-manual-in-footer');
-        const strategySelect      = document.getElementById('ps-sa-manual-strategy');
-        const saveButton          = document.getElementById('ps-sa-save-manual-script-btn');
-        const openModalButton     = document.getElementById('ps-sa-open-add-script-modal-btn');
-        const closeModalButton    = document.getElementById('ps-sa-manual-script-modal-close-btn');
+        const manualScriptModal   = document.getElementById('pyro-sa-manual-script-entry-modal');
+        const form                = document.getElementById('pyro-sa-manual-script-form');
+        const modalTitleEl        = document.getElementById('pyro-sa-manual-script-modal-title-h2');
+        const modeField           = document.getElementById('pyro-sa-manual-script-modal-mode');
+        const originalHandleField = document.getElementById('pyro-sa-manual-script-original-handle');
+        const handleField         = document.getElementById('pyro-sa-manual-handle');
+        const srcField            = document.getElementById('pyro-sa-manual-src');
+        const verField            = document.getElementById('pyro-sa-manual-ver');
+        const depsField           = document.getElementById('pyro-sa-manual-deps');
+        const inFooterCheckbox    = document.getElementById('pyro-sa-manual-in-footer');
+        const strategySelect      = document.getElementById('pyro-sa-manual-strategy');
+        const saveButton          = document.getElementById('pyro-sa-save-manual-script-btn');
+        const openModalButton     = document.getElementById('pyro-sa-open-add-script-modal-btn');
+        const closeModalButton    = document.getElementById('pyro-sa-manual-script-modal-close-btn');
         const messageArea         = document.getElementById('pyro-sa-manual-modal-messages'); // For messages in modal
         const mainTable           = document.getElementById('pyro-sa-main-table'); // For event delegation
 
@@ -201,7 +201,7 @@
             const handle = targetButton.dataset.handle;
             if (!handle) return;
 
-            if (targetButton.classList.contains('ps-sa-edit-manual-script-btn')) {
+            if (targetButton.classList.contains('pyro-sa-edit-manual-script-btn')) {
                 targetButton.disabled = true;
                 targetButton.innerHTML = (pyroSaWpApiSettings.i18n.loading) + ' <span class="spinner is-active"></span>';
                 clearFormMessages();
@@ -226,7 +226,7 @@
                     targetButton.innerHTML = pyroSaWpApiSettings.i18n.editAction;
                 });
 
-            } else if (targetButton.classList.contains('ps-sa-remove-manual-script-btn')) {
+            } else if (targetButton.classList.contains('pyro-sa-remove-manual-script-btn')) {
                 const confirmMessage = (pyroSaWpApiSettings.i18n.confirmRemove).replace('{handle}', handle);
 
                 if (window.confirm(confirmMessage)) {
